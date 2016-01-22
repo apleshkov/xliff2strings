@@ -27,7 +27,7 @@ class Parser: NSObject {
         
         let key: String
         var value: String {
-            return (target ?? source ?? key)
+            return (target ?? source ?? key).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         }
         
         var source: String?
