@@ -27,7 +27,15 @@ class Parser: NSObject {
         
         let key: String
         var value: String {
-            return (target ?? source ?? key).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            for raw in [target, source] {
+                guard let value = raw?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) else {
+                    continue
+                }
+                if value.characters.count > 0 {
+                    return value
+                }
+            }
+            return key
         }
         
         var source: String?
